@@ -6,11 +6,11 @@
 typedef struct sk_arena sk_arena;
 
 struct sk_arena {
-    unsigned char*  buf;
-    size_t          cap;
-    size_t          cur_offset;
-    size_t          prev_offset;
-    int             flags;
+    unsigned char*  buf;            // beginning of the arena buffer
+    size_t          cap;            // total capacity of the buffer
+    size_t          cur_offset;     // current offset
+    size_t          prev_offset;    // previous offset, might be needed later
+    int             flags;          // possible flags
 };
 
 
