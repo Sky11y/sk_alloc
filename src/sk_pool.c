@@ -1,5 +1,9 @@
 #include "../includes/sk_pool.h"
 
+static bool is_power_of_two(uintptr_t x) {
+    return (x & (x - 1)) == 0;
+}
+
 bool sk_pool_init(sk_pool* pool, size_t object_size, size_t object_count)
 {
     if (!pool)

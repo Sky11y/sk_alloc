@@ -3,9 +3,16 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <assert.h>
 #include <string.h>
 
+// allow user to define own alignment
+#ifndef DEFAULT_ALIGNMENT
+ #define DEFAULT_ALIGNMENT (2*sizeof(void*)) // usually 16 bytes
+#endif
+
+// flags
 #define USER_BUF 0x00000001
 
 typedef struct sk_arena sk_arena;
