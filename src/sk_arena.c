@@ -14,13 +14,13 @@ static bool is_power_of_two(uintptr_t x) {
     mod = 5
     p = 0x1005 + (8 - 5) <=> 0x1008
 */
-static uintptr_t align_fw(uintptr_t ptr, size_t align) {
+static uintptr_t align_fw(uintptr_t ptr, uintptr_t align) {
     uintptr_t p, a, mod;
 
     assert(is_power_of_two(align));
 
     p = ptr;
-    a = (uintptr_t)align;
+    a = align;
     // since 'a' is power of two we can do a faster version of modulo
     // see example above
     mod = p & (a - 1);

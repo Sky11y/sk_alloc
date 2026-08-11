@@ -7,6 +7,14 @@
 #include <string.h>
 #include <assert.h>
 
+#ifndef DEFAULT_ALIGNMENT
+ #define DEFAULT_ALIGNMENT (2*sizeof(void*)) // usually 16 bytes
+#endif
+
+#define USER_BUF 0x00000001
+#define DEFAULT_COUNT 42
+#define DEFAULT_SIZE 8
+
 typedef struct free_list free_list;
 typedef struct sk_pool sk_pool;
 
@@ -24,15 +32,13 @@ struct free_list {
     free_list*  next;
 };
 
-#define USER_BUF 0x00000001
-#define DEFAULT_COUNT 42
-#define DEFAULT_SIZE 8
-
 /*
    PROTOTYPES
+   User can create pool with x size * count chunks
+   Or provide buffer with it length and size of chunk
 */
 bool        sk_pool_init(sk_pool* pool, size_t object_size, size_t object_count);
-bool        sk_pool_init_with_buffer(sk_pool* pool, void* buffer, size_t object_size, size_t object_count);
+bool        sk_pool_init_with_buffer(sk_pool* pool, void* buffer, size_t buffer_size, size_t object_size);
 bool        sk_pool_destroy(sk_pool* pool); // destroy the whole pool
 void*       sk_pool_alloc(sk_pool* pool); // allocate one object
 bool        sk_pool_free(sk_pool* pool, void* ptr); // free one object
