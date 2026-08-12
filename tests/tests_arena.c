@@ -1,7 +1,7 @@
 #include "../includes/sk_arena.h"
 #include <stdio.h>
 
-int main(void)
+void arena_basic_test()
 {
     sk_arena arena;
 
@@ -9,8 +9,14 @@ int main(void)
     int *myInt = sk_arena_alloc(&arena, sizeof(int));
     *myInt = 456;
 
-    printf("%d\n", *myInt);
-
-    return 0;
+    assert(*myInt == 456 && "Basic test failed");
+    sk_arena_destroy(&arena);
 }
 
+// int main(void)
+// {
+//     basic_test();
+//
+//     return 0;
+// }
+//
